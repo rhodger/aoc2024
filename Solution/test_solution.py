@@ -1,10 +1,11 @@
 import unittest
 from unittest.mock import patch
-from solution import *
+from Solution.solution import *
 
 class TestSolution(unittest.TestCase):
-    def setUp(self):
-        self.solution = Solution()
+    @patch('builtins.open')
+    def setUp(self, _):
+        self.solution = Solution('')
 
     @patch('builtins.open')
     def test_load_input_success(self, mock_open):
