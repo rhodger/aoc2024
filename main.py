@@ -1,5 +1,6 @@
 from Day1.day1 import *
 from Day2.day2 import *
+from Day3.day3 import *
 
-d = SolutionD2C2('inputs/d2c1.txt')
+d = SolutionD3C1('inputs/d3c1.txt')
 print(d.solve())
