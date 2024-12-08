@@ -7,8 +7,6 @@ class SolutionD2(Solution):
         formatted_input = []
         for line in self.input:
             formatted_input.append(re.findall(r'\d+', line))
-        
-        print(f"formatted: {formatted_input}")
 
         return formatted_input
 

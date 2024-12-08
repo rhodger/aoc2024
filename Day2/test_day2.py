@@ -31,10 +31,14 @@ class TestSolutionD2(unittest.TestCase):
             None
         """
         self.d = SolutionD2C1('')
-        print(f"pre-format: {self.d.input}")
         mock_open.assert_called_once()
         self.assertEqual(self.d.input[0], '7 6 4 2 1')
     
     def test_get_formatted_input(self):
         formatted_input = self.d.get_formatted_input()
         self.assertEqual(formatted_input[0], ['7', '6', '4', '2', '1'])
+
+class TestSolutionD2C1(TestSolutionD2):
+    def test_solve(self):
+        solution = self.d.solve()
+        self.assertEqual(solution, 2)
