@@ -12,25 +12,9 @@ TEST_INPUT_1 = """7 6 4 2 1
 TEST_INPUT_2 = TEST_INPUT_1
 
 class TestSolutionD2(unittest.TestCase):
-    """
-    Test cases for SolutionD1C1 (Day 1 Challenge 1).
-    
-    This class contains test methods for the SolutionD1C1 class,
-    including setup and individual test cases.
-    """
-
     @patch('builtins.open', new_callable=mock_open, read_data=TEST_INPUT_1)
     def setUp(self, mock_open):
-        """
-        Set up the test environment by creating an instance of SolutionD1C1.
-        
-        Args:
-            mock_open: Mock object for the open function
-        
-        Returns:
-            None
-        """
-        self.d = SolutionD2C1('')
+        self.d = SolutionD2('')
         mock_open.assert_called_once()
         self.assertEqual(self.d.input[0], '7 6 4 2 1')
     
@@ -39,6 +23,32 @@ class TestSolutionD2(unittest.TestCase):
         self.assertEqual(formatted_input[0], [7, 6, 4, 2, 1])
 
 class TestSolutionD2C1(TestSolutionD2):
+    @patch('builtins.open', new_callable=mock_open, read_data=TEST_INPUT_1)
+    def setUp(self, mock_open):
+        self.d = SolutionD2C1('')
+        mock_open.assert_called_once()
+        self.assertEqual(self.d.input[0], '7 6 4 2 1')
+
+    def test_is_pair_safe(self):
+        valid = self.d.is_pair_safe(False, 7, 6)
+        invalid_polarity = self.d.is_pair_safe(False, 7, 8)
+        invalid_diff = self.d.is_pair_safe(False, 7, 3)
+
+        self.assertTrue(valid)
+        self.assertFalse(invalid_polarity)
+        self.assertFalse(invalid_diff)
+
+    def test_solve(self):
+        solution = self.d.solve()
+        self.assertEqual(solution, 2)
+
+class TestSolutionD2C2(TestSolutionD2):
+    @patch('builtins.open', new_callable=mock_open, read_data=TEST_INPUT_1)
+    def setUp(self, mock_open):
+        self.d = SolutionD2C2('')
+        mock_open.assert_called_once()
+        self.assertEqual(self.d.input[0], '7 6 4 2 1')
+
     def test_is_safe(self):
         valid = self.d.is_safe([7, 6, 4, 2, 1])
         invalid_polarity = self.d.is_safe([7, 6, 4, 2, 3])
@@ -50,4 +60,4 @@ class TestSolutionD2C1(TestSolutionD2):
 
     def test_solve(self):
         solution = self.d.solve()
-        self.assertEqual(solution, 2)
+        self.assertEqual(solution, 4)
