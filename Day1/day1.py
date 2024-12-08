@@ -2,7 +2,7 @@ import re
 
 from Solution.solution import Solution
 
-class SolutionD1C1(Solution):
+class SolutionD1(Solution):
 		@staticmethod
 		def load_input(input_file_location):
 			try:
@@ -34,6 +34,7 @@ class SolutionD1C1(Solution):
 
 			return sorted_input
 
+class SolutionD1C1(SolutionD1):
 		def solve(self):
 			sorted_input = self.get_formatted_input()
 
@@ -44,7 +45,7 @@ class SolutionD1C1(Solution):
 			
 			return total_distance
 
-class SolutionD1C2(SolutionD1C1):
+class SolutionD1C2(SolutionD1):
 	def solve(self):
 		formatted_input = self.get_formatted_input()
 
