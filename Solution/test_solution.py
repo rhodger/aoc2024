@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import patch
+from unittest.mock import patch, mock_open
 from Solution.solution import *
 
 class TestSolution(unittest.TestCase):
@@ -10,7 +10,7 @@ class TestSolution(unittest.TestCase):
     including setup and individual test cases.
     """
 
-    @patch('builtins.open')
+    @patch('builtins.open', new_callable=mock_open, read_data='Test content')
     def setUp(self, _):
         """
         Set up the test environment by creating an instance of Solution.
@@ -23,7 +23,7 @@ class TestSolution(unittest.TestCase):
         """
         self.solution = Solution('')
 
-    @patch('builtins.open')
+    @patch('builtins.open', new_callable=mock_open, read_data='Test content')
     def test_load_input_success(self, mock_open):
         """
         Test successful loading of input file.
@@ -44,7 +44,7 @@ class TestSolution(unittest.TestCase):
         mock_open.assert_called_once_with("test.txt", 'r')
         
         # Check if the returned value matches what we expected
-        self.assertEqual(result, "Test content")
+        self.assertEqual(result, ["Test content"])
 
     @patch('builtins.open')
     def test_load_input_failure(self, mock_open):
