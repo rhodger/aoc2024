@@ -36,9 +36,18 @@ class TestSolutionD2(unittest.TestCase):
     
     def test_get_formatted_input(self):
         formatted_input = self.d.get_formatted_input()
-        self.assertEqual(formatted_input[0], ['7', '6', '4', '2', '1'])
+        self.assertEqual(formatted_input[0], [7, 6, 4, 2, 1])
 
 class TestSolutionD2C1(TestSolutionD2):
+    def test_is_safe(self):
+        valid = self.d.is_safe([7, 6, 4, 2, 1])
+        invalid_polarity = self.d.is_safe([7, 6, 4, 2, 3])
+        invalid_diff = self.d.is_safe([10, 6, 4, 2, 1])
+
+        self.assertTrue(valid)
+        self.assertFalse(invalid_polarity)
+        self.assertFalse(invalid_diff)
+
     def test_solve(self):
         solution = self.d.solve()
         self.assertEqual(solution, 2)
