@@ -39,7 +39,8 @@ class SolutionD1C1(SolutionD1):
 			sorted_input = self.get_formatted_input()
 
 			total_distance = 0
-			for pair_index in range(len(sorted_input[0] if sorted_input[0] < sorted_input[1] else sorted_input[1])):
+			shortest_list = sorted_input[0] if sorted_input[0] < sorted_input[1] else sorted_input[1]
+			for pair_index in range(len(shortest_list)):
 				pair = [sorted_input[0][pair_index], sorted_input[1][pair_index]]
 				total_distance += abs(pair[0] - pair[1])
 			
