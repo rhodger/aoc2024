@@ -5,7 +5,6 @@ from Solution.solution import Solution
 class SolutionD1C1(Solution):
 		@staticmethod
 		def load_input(input_file_location):
-			print(f"loading from {input_file_location}")
 			try:
 				with open(input_file_location, 'r') as file:
 					content = file.readlines()
@@ -18,7 +17,6 @@ class SolutionD1C1(Solution):
 						return None
 					else:
 						formatted_content.append(nums)
-				print(f"got {formatted_content}")
 				return formatted_content
 			except FileNotFoundError:
 				print(f"Error: File '{input_file_location}' not found.")
@@ -27,8 +25,7 @@ class SolutionD1C1(Solution):
 				print(f"An error occurred: {e}")
 				return None
 		
-		def solve(self):
-			print(f"unsorted: {self.input}")
+		def get_formatted_input(self):
 			sorted_input = [[],[]]
 			for pair in self.input:
 				sorted_input[0].append(int(pair[0]))
@@ -36,10 +33,16 @@ class SolutionD1C1(Solution):
 			sorted_input[0].sort()
 			sorted_input[1].sort()
 
-			print(f"sorted: {sorted_input}")
+			return sorted_input
+
+		def solve(self):
+			sorted_input = self.get_formatted_input()
 
 			total_distance = 0
-			for pair in sorted_input:
+			for pair_index in range(len(sorted_input[0] if sorted_input[0] < sorted_input[1] else sorted_input[1])):
+				pair = [sorted_input[0][pair_index], sorted_input[1][pair_index]]
+				print(f"testing {pair}")
+				print(f"distance: {abs(pair[0] - pair[1])}")
 				total_distance += abs(pair[0] - pair[1])
 			
 			return total_distance

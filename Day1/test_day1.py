@@ -16,6 +16,10 @@ class TestSolution(unittest.TestCase):
         self.d = SolutionD1C1('')
         mock_open.assert_called_once()
         self.assertEqual(self.d.input[0], ['3', '4'])
+    
+    def test_SolutionD1C1_get_formatted_input(self):
+        formatted_input = self.d.get_formatted_input()
+        self.assertEqual([formatted_input[0][0], formatted_input[1][0]], [1, 3])
 
     def test_SolutionD1C1_solve(self):
         solution = self.d.solve()
