@@ -8,7 +8,6 @@ class SolutionD1C1(Solution):
 			try:
 				with open(input_file_location, 'r') as file:
 					content = file.readlines()
-				print(content)
 				formatted_content = []
 				for line in content:
 					nums = re.findall(r'\d+', line)
@@ -41,8 +40,6 @@ class SolutionD1C1(Solution):
 			total_distance = 0
 			for pair_index in range(len(sorted_input[0] if sorted_input[0] < sorted_input[1] else sorted_input[1])):
 				pair = [sorted_input[0][pair_index], sorted_input[1][pair_index]]
-				print(f"testing {pair}")
-				print(f"distance: {abs(pair[0] - pair[1])}")
 				total_distance += abs(pair[0] - pair[1])
 			
 			return total_distance
