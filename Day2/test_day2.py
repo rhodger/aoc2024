@@ -49,10 +49,10 @@ class TestSolutionD2C2(TestSolutionD2):
         mock_open.assert_called_once()
         self.assertEqual(self.d.input[0], '7 6 4 2 1')
 
-    def test_is_safe(self):
-        valid = self.d.is_safe([7, 6, 4, 2, 1])
-        invalid_polarity = self.d.is_safe([7, 6, 4, 2, 3])
-        invalid_diff = self.d.is_safe([10, 6, 4, 2, 1])
+    def test_is_report_safe(self):
+        valid = self.d.is_report_safe([7, 6, 4, 3, 1])
+        invalid_polarity = self.d.is_report_safe([7, 6, 4, 5, 6])
+        invalid_diff = self.d.is_report_safe([15, 10, 4, 2, 1])
 
         self.assertTrue(valid)
         self.assertFalse(invalid_polarity)

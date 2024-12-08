@@ -45,3 +45,33 @@ class SolutionD2C1(SolutionD2):
             safe_reports += 1 if self.is_safe(report) else 0
         
         return safe_reports
+
+class SolutionD2C2(SolutionD2):
+    @staticmethod
+    def is_report_safe(report):
+        ascending = report[1] > report[0]
+        failures = 0
+        for i in range(1, len(report)):
+            if not SolutionD2.is_pair_safe(ascending, report[i-1], report[i]):
+                failures += 1
+        
+        print(f"failures: {failures}")
+        return failures < 1
+    
+    @staticmethod
+    def is_report_handlable(report):
+        successes = 0
+        successes += 1 if SolutionD2C2.is_report_safe(report) else 0
+        for i in range(len(report)):
+            trimmed_report = report[:i] + report[i+1:]
+            successes += 1 if SolutionD2C2.is_report_safe(trimmed_report) else 0
+        
+        return successes > 0
+
+
+    def solve(self):
+        formatted_input = self.get_formatted_input()
+        safe = 0
+        for report in formatted_input:
+            safe += 1 if self.is_report_handlable(report) else 0
+        return safe
