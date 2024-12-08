@@ -43,3 +43,13 @@ class SolutionD1C1(Solution):
 				total_distance += abs(pair[0] - pair[1])
 			
 			return total_distance
+
+class SolutionD1C2(SolutionD1C1):
+	def solve(self):
+		formatted_input = self.get_formatted_input()
+
+		total_similarity = 0
+		for val in formatted_input[0]:
+			total_similarity +=  val * formatted_input[1].count(val)
+		
+		return total_similarity
