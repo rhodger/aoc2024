@@ -7,8 +7,7 @@ class SolutionD3(Solution):
         for line in self.input:
             ops += list(map(lambda x: (int(x[0]), int(x[1])), re.findall(r'mul\((\d+),(\d+)\)', line)))
         return ops
-
-class SolutionD3C1(SolutionD3):
+    
     def solve(self):
         operations = self.get_operations()
         total = 0
@@ -16,11 +15,21 @@ class SolutionD3C1(SolutionD3):
             total += op[0] * op[1]
         return total
 
+class SolutionD3C1(SolutionD3):
+    pass
+
 class SolutionD3C2(SolutionD3):
+    # Requires newlines stripping from input
     def get_operations(self):
         valid_sections = []
         for line in self.input:
-            valid_sections.append(re.sub(r'don\'t().*do()', 'do()', line))
+            pline = line
+            old_length = -1
+            while len(pline) != old_length:
+                print(f"step: {pline}")
+                old_length = len(pline)
+                pline = re.sub(r'don\'t\(\).*?(do\(\)|$)', 'do()', pline)
+            valid_sections.append(pline)
 
         print(f"valid sections: {valid_sections}")
         

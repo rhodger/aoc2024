@@ -23,9 +23,7 @@ class Solution:
         try:
             with open(input_file_location, 'r') as file:
                 content = list(map(lambda x: x.strip(), file.readlines()))
-            
-            print(f"content: {content}")
-            
+
             return content
         except FileNotFoundError:
             print(f"Error: File '{input_file_location}' not found.")
