@@ -40,3 +40,16 @@ class TestSolutionD4C1(TestSolutionD4):
     def test_solve(self):
         solution = self.d.solve()
         self.assertEqual(solution, 18)
+
+class TestSolutionD4C2(TestSolutionD4):
+    # Check initialisation works
+    @patch('builtins.open', new_callable=mock_open, read_data=TEST_INPUT_1)
+    def setUp(self, mock_open):
+        self.d = SolutionD4C2('')
+        mock_open.assert_called_once()
+        self.assertEqual(self.d.input[0], "MMMSXXMASM")
+
+    # Test solution works on example
+    def test_solve(self):
+        solution = self.d.solve()
+        self.assertEqual(solution, 9)
